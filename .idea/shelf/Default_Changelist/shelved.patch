@@ -1,0 +1,18 @@
+Index: hello-spring/src/test/java/hello/hellospring/repository/MemoryMemberRepositoryTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package hello.hellospring.repository;\n\nimport hello.hellospring.domain.Member;\nimport org.assertj.core.api.Assertions;\nimport org.junit.jupiter.api.AfterEach;\nimport org.junit.jupiter.api.Test;\n\nimport java.util.List;\nimport java.util.Optional;\n\nimport static org.assertj.core.api.Assertions.*;\n\nclass MemoryMemberRepositoryTest {\n\n     MemoryMemberRepository repository = new MemoryMemberRepository();\n\n     @AfterEach\n     public void afterEach(){\n          repository.clearStore();\n     }\n\n     @Test\n     public void save(){\n         Member member = new Member();\n         member.setName(\"spring\");\n\n         repository.save(member);\n\n         Member result = repository.findById(member.getId()).get();\n\n         assertThat(member).isEqualTo(result);\n\n     }\n     @Test\n     public void findByName(){\n          Member member1 = new Member();\n          member1.setName(\"spring1\");\n          repository.save(member1);\n\n          Member member2 = new Member();\n          member2.setName(\"spring2\");\n          repository.save(member2);\n\n          Member result = repository.findByName(\"spring1\").get();\n\n          assertThat(result).isEqualTo(member1);\n\n     }\n\n     @Test public void findAll() {\n          Member member1 = new Member();\n          member1.setName(\"spring1\");\n          repository.save(member1);\n\n          Member member2 = new Member();\n          member2.setName(\"spring2\");\n          repository.save(member2);\n\n          List<Member> result =  repository.findAll();\n\n          assertThat(result.size()).isEqualTo(2);\n     }\n\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- hello-spring/src/test/java/hello/hellospring/repository/MemoryMemberRepositoryTest.java	(revision c84faed8158a9d729961225d711c64d544e9a67e)
++++ hello-spring/src/test/java/hello/hellospring/repository/MemoryMemberRepositoryTest.java	(date 1604770427176)
+@@ -58,7 +58,7 @@
+ 
+           List<Member> result =  repository.findAll();
+ 
+-          assertThat(result.size()).isEqualTo(2);
++          assertThat(result.size()).isEqualTo(2); //
+      }
+ 
+ 
